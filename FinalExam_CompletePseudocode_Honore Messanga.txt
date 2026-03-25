@@ -1,0 +1,56 @@
+start
+    Declarations
+        num SIZE = 10
+        num MAX = 6
+        string name
+        num scores[SIZE]
+        num x
+        num y
+        num temp
+        num total
+        num COMPS = SIZE - 1
+
+    output "Enter student name:"
+    input name
+
+    call fillArray()
+    call sortArray()
+    call displayTotal()
+stop
+
+// Module to input 10 quiz scores
+fillArray()
+    for x = 0 to SIZE - 1
+        output "Enter quiz score ", x + 1, ":"
+        input scores[x]
+    endfor
+return
+
+// Module to sort the scores array in descending order (highest to lowest)
+sortArray()
+    for x = 0 to COMPS - 1
+        for y = 0 to COMPS - x - 1
+            if scores[y] < scores[y + 1] then
+                call swap(y, y + 1)
+            endif
+        endfor
+    endfor
+return
+
+// Module to swap two values in the scores array
+swap(a, b)
+    temp = scores[a]
+    scores[a] = scores[b]
+    scores[b] = temp
+return
+
+// Module to total the top 6 scores and display the result
+displayTotal()
+    total = 0
+    for x = 0 to MAX - 1
+        total = total + scores[x]
+    endfor
+
+    output "Student: ", name
+    output "Total of highest six quiz scores: ", total
+return
